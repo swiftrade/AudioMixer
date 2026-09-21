@@ -1,4 +1,3 @@
-# Ann Coates Mixer
 
 A real-time N-source audio mixer over the UltraHighSpeecCodec stream format. C++17, Linux
 x86-64, CMake + CTest, no system dependencies. Media import is sniffed by magic
@@ -12,7 +11,7 @@ Named for the pseudonym Morrissey used for the sped-up backing vocal on
 Three independent feeds, each at its own sample rate and depth, are decoded into
 a common int32 domain, resampled to a 48 kHz / 32-bit bus, volume-weighted,
 summed, and written to a `.bad` output (and optionally a stereo WAV). Feed 1
-carries a **+20% pitch shift** — the Ann Coates effect: it consumes its input
+carries a **+20% pitch shift** —it consumes its input
 faster than real time and ends early, like a tape played fast.
 
 The work is in the plumbing: a pull-based pipeline driven by an injected clock,
@@ -58,7 +57,7 @@ roles**: **1 · lead voice** (sets the mix length), **2 · background score**,
 plus per-slot volume/pitch and a reset. **Feeds 2–3 loop to fill feed 1 when
 shorter than it** (a decoded-duration probe decides; if longer they play once
 and extend the mix). The slots start **empty** — only what you put in them is
-mixed. The **"load demo preset"** button fills them with the Ann Coates demo
+mixed. The **"load demo preset"** button fills them with the demo
 test-tones, but **any file you upload auto-clears demo feeds from the other
 slots**, so a stray demo tone can never sneak into your mix. **Mix** posts
 `POST /api/mix`; the engine renders at full speed (SteppedClock) and the page
@@ -146,7 +145,7 @@ The demo defaults: feed 0 `data/feed0_lead.bad` (44100/16, vol 80), feed 1
 `data/feed1_backing.bad` (16000/8, vol 55, **pitch +20%**), feed 2
 `data/feed2_instrumental.bad` (96000/32, vol 90). The control file drives
 `vol`/`pitch` events at their exact output-sample index. Feed 1 drops out
-~20% early — that is the Ann Coates effect.
+~20% early  
 
 Regenerate the data (and the golden reference) at any time:
 
@@ -213,7 +212,7 @@ clip counter.
 
 **Resampling & pitch.** The cursor advances by a per-feed step
 `step = src_rate / out_rate × (1 + pitch/100)`; a `+20%` pitch is `step = 1.2` —
-the Ann Coates effect, which is why feed 1 ends ~20% early. For an output
+, which is why feed 1 ends ~20% early. For an output
 position `pos = k + frac`, the window serves `a = s[k]` and `b = s[k+1]`
 (`a` if the source has ended and `k+1` is past the end — last-sample hold) and
 interpolates linearly in int64, truncating toward zero:
