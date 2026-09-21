@@ -3,8 +3,6 @@ A real-time N-source audio mixer over the UltraHighSpeecCodec stream format. C++
 x86-64, CMake + CTest, no system dependencies. Media import is sniffed by magic
 (`bad`, `wav`, `mp3`, `flac`, `ogg`), never by extension.
 
-Named for the pseudonym Morrissey used for the sped-up backing vocal on
-*Bigmouth Strikes Again* — which is exactly what feed 1 does.
 
 ## What this is
 
